@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .outer{
+            height: 500px;
+            width: 500px;
+            background: #5BA2FF;
+        }
+
+        .inner{
+            position: relative;
+            overflow: hidden;
+        }
+
+        .inner_top{
+            width: 100%;
+            height: 50%;
+            background: #E5F0FF;
+        }
+
+        .inner_bottom{
+            width: 100%;
+            height: 50%;
+        }
+
+        .move{
+            height: 120px;
+            font-size: 100px;
+            line-height: 120px;
+            font-weight: bolder;
+            position: absolute;
+            animation: 3s move_infi linear infinite;
+        }
+
+        .move_top{
+            color:#5BA2FF;
+            bottom: -60px;
+        }
+
+        .move_bottom{
+            color: #E5F0FF;
+            top:-60px;
+        }
+
+        @keyframes move_infi {
+            from{
+                transform: translateX(0px);
+            }
+            to{
+                transform: translateX(-110px);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="outer">
+    <div class="inner inner_top">
+        <div class="move move_top">
+            ///////////////////////
+        </div>
+    </div>
+    <div class="inner inner_bottom">
+        <div class="move move_bottom">
+            ///////////////////////
+        </div>
+    </div>
+</div>
+</body>
+</html>

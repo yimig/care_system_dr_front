@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.move{
+  animation: 10s move linear infinite;
+}
+
+@keyframes move {
+  from{
+    transform: translateX(0em);
+  }
+  to{
+    transform: translateX(-6em);
+  }
+}
