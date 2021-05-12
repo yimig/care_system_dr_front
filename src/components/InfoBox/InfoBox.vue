@@ -1,43 +1,71 @@
 <template>
-<div class="infobox h-96 flex flex-row">
-  <div class="info_detail flex-grow flex flex-col text-right text-blue justify-center items-end">
-    <div class="name flex justify-end">
-      <Word v-for="w in nameValue" :key="w" :word="w"></Word>
-    </div>
-    <div class="tags flex flex-wrap justify-end my-4 w-72">
-      <div v-if="isMaleValue" class="tag gender bg-blue-dark text-bluelight">♂</div>
-      <div v-else class="tag gender bg-pink text-pink">♀</div>
-      <div class="tag age bg-yellow text-yellow">{{ageValue}}岁</div>
-      <div class="tag weight bg-green text-green">{{weightValue}}kg</div>
-      <div class="tag height bg-indigo text-indigo">{{heightValue}}cm</div>
-      <div v-if="isAllergicValue" class="tag allergic bg-red text-red"><i class="allergic_icon el-icon-warning-outline mr-1"></i>过敏体质</div>
-    </div>
+<div class="infobox h-96 flex items-center relative" id="info_box" :style="info_outer_style">
+  <div class="btn_info_to" @click="forward">
+    <div class="el-icon-arrow-left"></div>
   </div>
-  <div class="info_avatar h-48 w-36 bg-white m-24 ml-12"></div>
+<!--  <div class="info_mask relative" :style="info_mask_style">-->
+<!--    <Info :style="info_inner_style" :id="now_item.id" :name="now_item.name" :is_male="now_item.is_male" :height="now_item.height" :age="now_item.age" :weight="now_item.weight" :is_allergic="now_item.is_allergic" :avatar="now_item.avatar"></Info>-->
+<!--  </div>-->
+  <div class="info_flow h-96 flex flex-row" :style="info_inner_style">
+    <Info :style="info_inner_style" v-for="info in info_list" :key="info.id" :id="info.id" :name="info.name" :is_male="info.is_male" :height="info.height" :age="info.age" :weight="info.weight" :is_allergic="info.is_allergic" :avatar="info.avatar"></Info>
+  </div>
+  <div class="btn_info_to" @click="next">
+    <div class="el-icon-arrow-right"></div>
+  </div>
 </div>
 </template>
 
 <script>
-import Word from "./Word.vue";
+import Info from './info.vue'
 export default {
   name: "InfoBox",
-  props:['name','is_male','age','weight','height','is_allergic'],
+  props:['info_list'],
   data(){
+    let id = this.info_list[0].id
     return{
-      nameValue:this.name,
-      isMaleValue:this.is_male,
-      ageValue:this.age,
-      weightValue:this.weight,
-      heightValue:this.height,
-      isAllergicValue:this.is_allergic
+      // now_id:id,
+      // now_item:this.getNowItem(),
+      info_outer_style:{
+        width:''
+      },
+      info_inner_style:{
+        width:''
+      },
+      // info_mask_style:{
+      //   width:'',
+      //   visibility:visible,
+      // }
+    }
+  },
+  methods:{
+    getInfoHeight(){
+      let width=(window.innerWidth)/2-48
+      this.$data.info_outer_style.width=width+'px'
+      this.$data.info_inner_style.width=width-100+'px'
+    },
+    getNowItem(){
+      for (let i = 0; i < this.info_list.length; i++) {
+        if(this.info_list[i].id === this.$data.now_id)return this.info_list[i]
+      }
+      return this.info_list[0]
+    },
+    next(){
+      this.$data.now_id++;
+    },
+    forward(){
+      this.$data.now_id--;
     }
   },
   components:{
-    Word,
+    Info,
+  },
+  created() {
+    addEventListener('resize',this.getInfoHeight)
+    this.getInfoHeight()
   }
 }
 </script>
 
 <style lang="less" scoped>
-@import "res/style/infobox.less";
+@import "res/style/Infobox.less";
 </style>

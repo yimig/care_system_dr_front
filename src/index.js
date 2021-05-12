@@ -27,11 +27,35 @@ new Vue({
     el:'#infobox',
     render:(h,props)=>h(InfoBox,{props:
             {
-                name:'王小明',
-                is_male:true,
-                age:18,
-                height:178,
-                weight:70,
-                is_allergic:true
+                info_list:[{
+                    id:1,
+                    // avatar:'https://pic2.zhimg.com/v2-d0d64eb5b831452ffb0a306899d7718e_1440w.jpg?source=172ae18b',
+                    avatar:'',
+                    name:'倪培浩',
+                    is_male:true,
+                    age:21,
+                    height:175,
+                    weight:60,
+                    is_allergic:false
+                },{
+                    id:2,
+                    // avatar:'https://pic2.zhimg.com/v2-d0d64eb5b831452ffb0a306899d7718e_1440w.jpg?source=172ae18b',
+                    avatar:'',
+                    name:'王小梅',
+                    is_male:false,
+                    age:18,
+                    height:178,
+                    weight:50,
+                    is_allergic:true
+                },{
+                    id:3,
+                    avatar:'',
+                    name:'李建业',
+                    is_male:true,
+                    age:23,
+                    height:185,
+                    weight:70,
+                    is_allergic:false
+                }]
             }})
 })

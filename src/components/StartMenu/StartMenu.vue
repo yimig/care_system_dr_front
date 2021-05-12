@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import StartMenuItem from "../StartMenuItem/StartMenuItem.vue";
+import StartMenuItem from "./StartMenuItem.vue";
 export default {
   name: "StartMenu",
   data(){
