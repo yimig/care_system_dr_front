@@ -7,7 +7,7 @@
       <span solt="title">设置</span>
     </el-menu-item>
   </el-menu>
-  <StartMenuComp class="absolute left-16 bottom-0 bg-blue" ref="startMenu"></StartMenuComp>
+  <StartMenu class="absolute left-16 bottom-0 bg-blue" ref="startMenu"></StartMenu>
   <div :class="'sideWordMask absolute '+moveSideMask">
     <span>System</span>
   </div>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import StartMenuComp from "../StartMenu/StartMenu.vue";
+import StartMenu from "../StartMenu/StartMenu.vue";
 export default {
   name: "SideBar",
   data(){
@@ -48,7 +48,7 @@ export default {
     }
   },
   components:{
-    StartMenuComp,
+    StartMenu,
   }
 }
 </script>

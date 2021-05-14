@@ -4,8 +4,9 @@ import 'tailwindcss/tailwind.css'
 import Vue from 'vue';
 import less from 'less';
 import ElementUI from 'element-ui'
-import SideBarComp from "./components/SideBar/SideBar.vue";
+import SideBar from "./components/SideBar/SideBar.vue";
 import InfoBox from "./components/InfoBox/InfoBox.vue";
+import TextBox from "./components/TextBox/TextBox.vue";
 
 Vue.use(less);
 Vue.use(ElementUI);
@@ -20,7 +21,7 @@ Vue.use(ElementUI);
 
 new Vue({
     el:'#sidebar',
-    render:(h,props)=>h(SideBarComp,{props:{}})
+    render:(h,props)=>h(SideBar,{props:{}})
 })
 
 new Vue({
@@ -39,8 +40,8 @@ new Vue({
                     is_allergic:false
                 },{
                     id:2,
-                    // avatar:'https://pic2.zhimg.com/v2-d0d64eb5b831452ffb0a306899d7718e_1440w.jpg?source=172ae18b',
-                    avatar:'',
+                    avatar:'https://pic2.zhimg.com/v2-d0d64eb5b831452ffb0a306899d7718e_1440w.jpg?source=172ae18b',
+                    // avatar:'',
                     name:'王小梅',
                     is_male:false,
                     age:18,
@@ -58,4 +59,9 @@ new Vue({
                     is_allergic:false
                 }]
             }})
+})
+
+new Vue({
+    el:'#textbox',
+    render:(h,props)=>h(TextBox,{props:{}})
 })

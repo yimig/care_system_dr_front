@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col">
-    <div class="tone text-center">{{ pinyin }}</div>
-    <div class="word text-5xl">{{ word }}</div>
+    <div class="tone text-center select-none">{{ pinyin }}</div>
+    <div class="word text-5xl select-none">{{ word }}</div>
   </div>
 </template>
 
