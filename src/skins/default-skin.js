@@ -50,6 +50,9 @@ module.exports = {
             indigo:colors.indigo["50"],
             pink: colors.pink["50"],
         },
+        borderColor:theme=>({
+            'primary':'#E5F0FF'
+        }),
         fontFamily: {
             sans: ['Graphik', 'Source Han Sans', 'SimHei', 'sans-serif'],
         },

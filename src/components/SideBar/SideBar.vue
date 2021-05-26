@@ -8,7 +8,7 @@
     </el-menu-item>
   </el-menu>
   <StartMenu class="absolute left-16 bottom-0 bg-blue" ref="startMenu"></StartMenu>
-  <div :class="'sideWordMask absolute '+moveSideMask">
+  <div :class="'z-20 sideWordMask absolute '+moveSideMask">
     <span>System</span>
   </div>
 </div>

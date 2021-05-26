@@ -18,7 +18,7 @@
 
 
 ---
-
+notice:make sure you have installed Node.js(v15)
 
 run command
 
@@ -26,11 +26,12 @@ run command
 npm install
 ```
 
-to download dependencies.
-then run
+to download all dependencies.
+It may take some minutes.
+After install complete, run
 
 ```
 webpack serve
 ```
 
-to launch the program
+to launch the project.

@@ -9,6 +9,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
     },
+    devtool: 'source-map',
     devServer: {
         open: true,
         host: 'localhost',

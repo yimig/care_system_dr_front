@@ -25,7 +25,6 @@ export default {
   data(){
     return{
       is_inner_down:false,
-      now_item:this.getNowItem(),
       line_vis:'visible',
       outer_width:'',
       line_transform:'translateX(0px)',
@@ -35,18 +34,36 @@ export default {
     getInfoHeight(){
       this.$data.outer_width=(window.innerWidth)/2-48
     },
-    getNowItem(){
-      for (let i = 0; i < this.info_list.length; i++) {
-        if(this.info_list[i].id === this.now_id)return this.info_list[i]
+    getNextItem(){
+      let i = 0
+      let is_found=false
+      for (; i < this.info_list.length; i++) {
+        if(this.info_list[i].id === this.now_item.id){
+          is_found=true
+          break
+        }
       }
-      return this.info_list[0]
+      console.log('found?'+is_found)
+      if(is_found&&i<this.info_list.length-1){
+        return this.info_list[i+1]
+      }
+      return false
     },
-    getTranslateBiases(translate_value){
-      let sub = translate_value.substring(11)
-      return Number(sub.split("px")[0])
+    getForwardItem(){
+      let i = 0
+      let is_found=false
+      for (; i < this.info_list.length; i++) {
+        if(this.info_list[i].id === this.now_item.id){
+          is_found=true
+          break
+        }
+      }
+      if(is_found&&i>0){
+        return this.info_list[i-1]
+      }
+      return false
     },
     inner_mouse_down(event){
-      console.log("down")
       this.$data.is_inner_down=true
       this.move_biases = event.screenX
     },
@@ -70,13 +87,31 @@ export default {
       }
     },
     next(){
-      this.line_biases = this.line_biases - (this.$data.outer_width -100)
-      this.$data.line_transform="translateX("+this.line_biases+"px)"
+      this.$emit("itemChange",{'now_item':this.now_item,'item_list':this.info_list})
+      if(this.getNextItem())
+      {
+        this.$emit("beforeNextItem",{'now_item':this.now_item,'next_item':this.getNextItem()})
+        this.now_item=this.getNextItem()
+        this.line_biases = this.line_biases - (this.$data.outer_width -100)
+        this.$data.line_transform="translateX("+this.line_biases+"px)"
+        this.$emit("afterNextItem",{'old_item':this.getForwardItem(),'new_item':this.now_item})
+      }else {
+        this.$data.line_transform="translateX("+this.line_biases+"px)"
+      }
     },
     forward(){
-      this.line_biases = this.line_biases + (this.$data.outer_width -100)
-      this.$data.line_transform="translateX("+this.line_biases+"px)"
-    }
+      this.$emit("itemChange",{'now_item':this.now_item,'item_list':this.info_list})
+      if(this.getForwardItem())
+      {
+        this.$emit("beforeForwardItem",{'now_item':this.now_item,'forward_item':this.getForwardItem()})
+        this.now_item=this.getForwardItem()
+        this.line_biases = this.line_biases + (this.$data.outer_width -100)
+        this.$data.line_transform="translateX("+this.line_biases+"px)"
+        this.$emit("afterForwardItem",{'old_item':this.getNextItem(),'new_item':this.now_item})
+      }else {
+        this.$data.line_transform="translateX("+this.line_biases+"px)"
+      }
+    },
   },
   components:{
     Info,
@@ -85,8 +120,11 @@ export default {
     addEventListener('resize',this.getInfoHeight)
     this.getInfoHeight()
     this.line_biases=0
+    // this.now_item=null
+    this.now_item = {id:'0'}
   },
   mounted() {
+
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-<div :class="'start_menu h-full flex justify-end w-0 overflow-hidden transition-width '+oclass">
+<div :class="'start_menu z-10 h-full flex justify-end w-0 overflow-hidden transition-width '+oclass">
   <div class="menu flex flex-wrap justify-end content-start w-96">
     <StartMenuItem></StartMenuItem>
     <StartMenuItem></StartMenuItem>
