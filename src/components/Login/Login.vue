@@ -33,7 +33,7 @@ export default {
       .then(function (response) {
         console.log(this)
         if(response.data.result){
-          __this.$emit('pass',{sid:response.data.sid});
+          __this.$emit('pass',response.data.sid);
           __this.$data.is_show=false;
         }
         console.log(response)

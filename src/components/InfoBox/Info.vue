@@ -7,7 +7,7 @@
       <div class="tags flex flex-wrap justify-end my-4 w-72">
         <div v-if="is_male" class="tag gender bg-blue-dark text-bluelight select-none">♂</div>
         <div v-else class="tag gender bg-pink text-pink select-none">♀</div>
-        <div class="tag age bg-yellow text-yellow select-none">{{age}}岁</div>
+        <div class="tag age bg-yellow text-yellow select-none">{{c_age}}岁</div>
         <div class="tag weight bg-green text-green select-none">{{weight}}kg</div>
         <div class="tag height bg-indigo text-indigo select-none">{{height}}cm</div>
         <div v-if="is_allergic" class="tag allergic bg-red text-red select-none"><i class="allergic_icon el-icon-warning-outline mr-1"></i>过敏体质</div>
@@ -31,6 +31,11 @@ export default {
   },
   components:{
     Word,
+  },
+  computed:{
+    c_age:function (){
+      return new Date().getFullYear()-Number(this.age.substring(0,4))
+    }
   }
 }
 </script>

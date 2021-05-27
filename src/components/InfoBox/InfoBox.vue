@@ -87,11 +87,12 @@ export default {
       }
     },
     next(){
-      this.$emit("itemChange",{'now_item':this.now_item,'item_list':this.info_list})
+      this.$emit("beforeItemChange",{'now_item':this.now_item,'item_list':this.info_list})
       if(this.getNextItem())
       {
         this.$emit("beforeNextItem",{'now_item':this.now_item,'next_item':this.getNextItem()})
         this.now_item=this.getNextItem()
+        this.$emit("itemChange",{'old_item':this.getForwardItem(),'now_item':this.now_item,'item_list':this.info_list})
         this.line_biases = this.line_biases - (this.$data.outer_width -100)
         this.$data.line_transform="translateX("+this.line_biases+"px)"
         this.$emit("afterNextItem",{'old_item':this.getForwardItem(),'new_item':this.now_item})
@@ -100,11 +101,12 @@ export default {
       }
     },
     forward(){
-      this.$emit("itemChange",{'now_item':this.now_item,'item_list':this.info_list})
+      this.$emit("beforeItemChange",{'now_item':this.now_item,'item_list':this.info_list})
       if(this.getForwardItem())
       {
         this.$emit("beforeForwardItem",{'now_item':this.now_item,'forward_item':this.getForwardItem()})
         this.now_item=this.getForwardItem()
+        this.$emit("itemChange",{'old_item':this.getNextItem(),'now_item':this.now_item,'item_list':this.info_list})
         this.line_biases = this.line_biases + (this.$data.outer_width -100)
         this.$data.line_transform="translateX("+this.line_biases+"px)"
         this.$emit("afterForwardItem",{'old_item':this.getNextItem(),'new_item':this.now_item})

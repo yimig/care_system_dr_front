@@ -1,13 +1,19 @@
 <template>
 <div class="textbox flex-1 h-full p-10">
-  <textarea :class="'h-full w-full outline-none border-none text-2xl px-4 leading-8 bg-local '+(type=='borderbox'?'borderbox':'')"></textarea>
+  <textarea id="input_area" :class="'h-full w-full outline-none border-none text-2xl px-4 leading-8 bg-local '+(type=='borderbox'?'borderbox':'')" :value="text" @keydown="keydown"></textarea>
 </div>
 </template>
 
 <script>
 export default {
   name: "TextBox",
-  props:['type'],
+  props:['type','text'],
+  methods:{
+    keydown(){
+      var __this=this;
+      this.$emit('textchange',document.getElementById("input_area").value)
+    }
+  }
 }
 </script>
 
